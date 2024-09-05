@@ -1,0 +1,74 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Blank Bamboo Wicker Basket",
+      "description": "Eco-friendly bamboo wicker basket perfect for home decor and storage.",
+      "price": 200,
+      "offerPrice": 140,
+      "offer": "30%",
+      "thumbnail": "https://i.postimg.cc/Nfyc92j7/Image-8.png",
+      "quantity" : 1
+    },
+    {
+      "id": 2,
+      "title": "Natural Bamboo Floor Lamp",
+      "description": "Handcrafted bamboo lamp for an elegant and natural home setting.",
+      "price": 350,
+      "offerPrice": 280,
+      "offer": "20%",
+      "thumbnail": "https://i.postimg.cc/ZK1hrY9k/Image-7.png",
+      "quantity" : 1
+    },
+    {
+      "id": 3,
+      "title": "Organic Bamboo Cutlery Set",
+      "description": "Reusable bamboo cutlery set, ideal for eco-conscious living.",
+      "price": 50,
+      "offerPrice": 45,
+      "offer": "10%",
+      "thumbnail": "https://i.postimg.cc/ZqmtMfFV/Image-6.png",
+      "quantity" : 1
+    },
+    {
+      "id": 4,
+      "title": "Bamboo Storage Shelves",
+      "description": "Durable and lightweight bamboo shelves for efficient home organization.",
+      "price": 120,
+      "offerPrice": 96,
+      "offer": "20%",
+      "thumbnail": "https://i.postimg.cc/MGY22y9x/Image-5.png",
+      "quantity" : 1
+    },
+    {
+      "id": 5,
+      "title": "Bamboo Charcoal Air Purifier",
+      "description": "Natural air purifying bags made from bamboo charcoal, perfect for eliminating odors.",
+      "price": 30,
+      "offerPrice": 24,
+      "offer": "20%",
+      "thumbnail": "https://i.postimg.cc/BnHfNWDj/Image-4.png",
+      "quantity" : 1
+    },
+    {
+      "id": 6,
+      "title": "Bamboo Serving Tray chair",
+      "description": "Eco-friendly bamboo serving tray for tea, coffee, or snacks.",
+      "price": 75,
+      "offerPrice": 60,
+      "offer": "20%",
+      "thumbnail": "https://i.postimg.cc/vBHRQcKn/Image-3.png",
+      "quantity" : 1
+    },
+    {
+      "id": 7,
+      "title": "Bamboo Folding Table Chair",
+      "description": "Convenient and portable folding table made of bamboo, ideal for outdoor and indoor use.",
+      "price": 180,
+      "offerPrice": 153,
+      "offer": "15%",
+      "thumbnail": "https://i.postimg.cc/vBHRQcKn/Image-3.png",
+      "quantity" : 1
+    }
+  ]
+}
