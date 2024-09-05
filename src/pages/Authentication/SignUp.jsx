@@ -1,11 +1,41 @@
 import { FaApple, FaGoogle } from 'react-icons/fa6';
 import Img from '../../assets/login.png';
 import Logo from '../../assets/logowithname.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 const SignUp = () => {
     const [toggle, setToggle] = useState(false)
+    const [agree, setAgree] = useState(false)
+    const [error, setError] = useState('')
+    const { signUp, updateUserProfile } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const handleSubmit = async e => {
+        setError('')
+        e.preventDefault()
+        const form = e.target;
+        const firstName = form.firstName.value;
+        const lastName = form.lastName.value;
+        const name = firstName + ' ' + lastName;
+        const email = form.email.value;
+        const password = form.password.value;
+        if (password.length < 6) {
+            return setError('Password must be at least 6 characters !!')
+        }
+        signUp(email, password)
+        .then(() => {
+            updateUserProfile(name)
+            .then(() => {
+                navigate('/')
+                alert('Successfully sign up !!')
+            })
+        })
+        .catch(error => {
+            setError(error?.message)
+        })
+
+    }
     return (
         <div className="flex items-center min-h-screen py-5 lg:py-0">
             <div className="flex justify-center items-center bg-white flex-1">
@@ -15,7 +45,7 @@ const SignUp = () => {
                         <h1 className='text-2xl md:text-3xl font-bold text-black'>Furni<span className='text-blue-500'>Flex</span></h1>
                         <p className='text-xs md:text-sm'>Signup for purchase your desire products</p>
                     </div>
-                    <form className='space-y-5'>
+                    <form onSubmit={handleSubmit} className='space-y-5'>
                         <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                             <div className="relative w-full">
                                 <input className="peer h-[50px] border-2 border-gray-400 bg-white px-2 pt-4 text-black focus:outline-none rounded-md w-full" type="text" name='firstName' placeholder="" />
@@ -46,12 +76,15 @@ const SignUp = () => {
                                     toggle ? <FaEye size={20} /> : <FaRegEyeSlash size={20} />
                                 }
                             </div>
+                            {
+                                error && <p className='text-xs text-red-600 font-medium mt-1'>{error}</p>
+                            }
                         </div>
                         <div className='space-x-2 font-medium text-xs'>
-                            <input type="checkbox" />
+                            <input onChange={(e) => setAgree(e.target.checked)} type="checkbox" />
                             <label>I agree to the Terms & Policy</label>
                         </div>
-                        <button className='py-1 md:py-3 w-full bg-black rounded-md text-white text-xs md:text-sm hover:bg-gray-600 duration-300'>Sign Up</button>
+                        <button disabled={!agree} className='disabled:cursor-not-allowed py-1 md:py-3 w-full bg-black rounded-md text-white text-xs md:text-sm hover:bg-gray-600 duration-300'>Sign Up</button>
                     </form>
                     <div className='flex items-center'>
                         <div className='flex-1 h-px sm:w-16 bg-gray-400'></div>

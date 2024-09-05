@@ -1,11 +1,32 @@
+/* eslint-disable react/no-unescaped-entities */
 import { FaApple, FaGoogle } from 'react-icons/fa6';
 import Img from '../../assets/login.png';
 import Logo from '../../assets/logowithname.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 const SignIn = () => {
+    const { signIn } = useContext(AuthContext)
+    const [agree, setAgree] = useState(false)
     const [toggle, setToggle] = useState(false)
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const handleSubmit = async e => {
+        setError('')
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        signIn(email, password)
+            .then(() => {
+                alert("Sign in Successfully !!")
+                navigate('/')
+            })
+            .catch(error => {
+                setError(error?.message)
+            })
+    }
     return (
         <div className="flex items-center min-h-screen py-5 lg:py-0 px-3 lg:px-0">
             <div className="flex justify-center items-center bg-white flex-1">
@@ -14,7 +35,7 @@ const SignIn = () => {
                         <h4 className='text-2xl md:text-3xl font-medium'>Welcome Back</h4>
                         <p className='text-sm md:text-lg'>Enter your Credentials to access your account</p>
                     </div>
-                    <form className='space-y-5'>
+                    <form onSubmit={handleSubmit} className='space-y-5'>
                         <div className="relative w-full">
                             <input className="peer h-[50px] w-full border-2 border-gray-400 bg-white px-2 pt-4 text-black focus:outline-none rounded-md" type="email" name='email' placeholder="" />
                             <label className="absolute left-2 top-0.5 text-xs text-black duration-300 peer-placeholder-shown:left-2 peer-placeholder-shown:top-[50%] peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:left-2 peer-focus:top-0.5 peer-focus:-translate-y-0 peer-focus:text-xs peer-focus:text-black" >
@@ -31,15 +52,18 @@ const SignIn = () => {
                                     toggle ? <FaEye size={20} /> : <FaRegEyeSlash size={20} />
                                 }
                             </div>
+                            {
+                                error && <p className='text-xs text-red-600 font-medium mt-1'>{error}</p>
+                            }
                         </div>
                         <div className='text-end text-blue-500 font-medium text-xs md:text-sm cursor-pointer'>
                             <p>Forget password?</p>
                         </div>
                         <div className='space-x-2 font-medium text-xs'>
-                            <input type="checkbox" />
+                            <input onChange={(e) => setAgree(e.target.checked)} type="checkbox" />
                             <label>I agree to the Terms & Policy</label>
                         </div>
-                        <button className='py-1 md:py-3 w-full bg-black rounded-md text-white text-xs md:text-sm hover:bg-gray-600 duration-300'>Sign In</button>
+                        <button disabled={!agree} className='disabled:cursor-not-allowed py-1 md:py-3 w-full bg-black rounded-md text-white text-xs md:text-sm hover:bg-gray-600 duration-300'>Sign In</button>
                     </form>
                     <div className='flex items-center'>
                         <div className='flex-1 h-px sm:w-16 bg-gray-400'></div>
