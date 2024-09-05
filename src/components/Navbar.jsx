@@ -78,15 +78,27 @@ const Navbar = () => {
                     </ul>
                 </div>
                 {/* navbar end */}
-                <div className='flex items-center gap-3 md:gap-8 '>
+                {/* <div className='flex items-center gap-3 md:gap-8 '>
                     <div className='relative'>
                         <BsCart size={20} />
                         <span className='absolute -top-3 -right-4 w-full text-sm font-medium z-50'>57</span>
                     </div>
                     <div className='cursor-pointer'>
-                        {/* <img className='rounded-full border size-6' src="" alt="" /> */}
+                        <img className='rounded-full border size-6' src="" alt="" />
                         <FaUser className='size-6' />
                     </div>
+                </div> */}
+                <div className='flex items-center gap-5'>
+                    <Link to='/signIn' className="relative inline-block px-4 py-1 md:py-2 font-medium group text-sm">
+                        <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-blue-500 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                        <span className="absolute inset-0 w-full h-full bg-white border-2 border-blue-500 group-hover:border-black group-hover:bg-black"></span>
+                        <span className="relative text-black group-hover:text-white">Sign In</span>
+                    </Link>
+                    <Link to='/signUp' className="relative hidden lg:inline-block px-4 py-2 font-medium group text-xs md:text-sm ">
+                        <span className="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-blue-500 group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                        <span className="absolute inset-0 w-full h-full bg-white border-2 border-blue-500 group-hover:border-black group-hover:bg-black"></span>
+                        <span className="relative text-black group-hover:text-white">Sign Up</span>
+                    </Link>
                 </div>
             </div>
             {
