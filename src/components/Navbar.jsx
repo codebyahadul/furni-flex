@@ -4,6 +4,7 @@ import { BsCart } from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { AuthContext } from '../providers/AuthProvider';
+import toast from 'react-hot-toast';
 const Navbar = () => {
     const [dropdown, setDropdown] = useState()
     const [toggle, setToggle] = useState(false)
@@ -65,7 +66,7 @@ const Navbar = () => {
         logOut()
             .then(() => {
                 navigate('/')
-                alert('Logout successfully')
+                toast.success('Logout successfully')
             })
     }
     if (loading) {

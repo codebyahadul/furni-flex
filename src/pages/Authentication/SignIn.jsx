@@ -6,13 +6,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaRegEyeSlash } from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
+import toast from 'react-hot-toast';
 const SignIn = () => {
-    const { signIn } = useContext(AuthContext)
+    const { signIn, signInWithGoogle } = useContext(AuthContext)
     const [agree, setAgree] = useState(false)
     const [toggle, setToggle] = useState(false)
     const [error, setError] = useState('')
     const navigate = useNavigate()
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         setError('')
         e.preventDefault()
         const form = e.target;
@@ -20,12 +21,22 @@ const SignIn = () => {
         const password = form.password.value;
         signIn(email, password)
             .then(() => {
-                alert("Sign in Successfully !!")
+                toast.success("Sign in Successfully !!")
                 navigate('/')
             })
             .catch(error => {
                 setError(error?.message)
             })
+    }
+    const handleSingInWithGoogle = () => {
+        signInWithGoogle()
+        .then(() => {
+            navigate('/')
+            toast.success("Successfully sign in with google !!")
+        })
+        .catch(error => {
+            toast.error(error?.message)
+        })
     }
     return (
         <div className="flex items-center min-h-screen py-5 lg:py-0 px-3 lg:px-0">
@@ -73,7 +84,7 @@ const SignIn = () => {
                         <div className='flex-1 h-px sm:w-16 bg-gray-400'></div>
                     </div>
                     <div className='flex flex-col md:flex-row items-center justify-between gap-5 text-black font-medium'>
-                        <button className='py-1 md:py-3 text-xs md:text-sm border border-gray-400 rounded-md w-full flex justify-center items-center gap-3 hover:bg-black hover:text-white hover:border-black duration-300'>
+                        <button onClick={handleSingInWithGoogle} className='py-1 md:py-3 text-xs md:text-sm border border-gray-400 rounded-md w-full flex justify-center items-center gap-3 hover:bg-black hover:text-white hover:border-black duration-300'>
                             <FaGoogle size={20} />  Sign in with Google
                         </button>
                         <button className='py-1 md:py-3 text-xs md:text-sm border border-gray-400 rounded-md w-full flex justify-center items-center gap-3 hover:bg-black hover:text-white hover:border-black duration-300'>
