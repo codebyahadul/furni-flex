@@ -5,11 +5,14 @@ import SignUp from "../pages/Authentication/SignUp";
 import SignIn from "../pages/Authentication/SignIn";
 import Products from "../pages/Products";
 import Cart from "../pages/Cart";
+import ErrorPage from "../pages/ErrorPage";
+import CheckoutPage from "../pages/CheckoutPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',
@@ -22,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/cart',
                 element: <Cart />
+            },
+            {
+                path: '/checkOut',
+                element: <CheckoutPage />
             }
         ]
     },

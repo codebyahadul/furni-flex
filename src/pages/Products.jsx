@@ -9,8 +9,8 @@ const Products = () => {
         <div className="flex gap-5 my-5 md:my-8 lg:my-12">
             <div className="border-r-2 w-[200px] lg:w-[280px] pr-3 lg:pr-5 space-y-2 hidden md:block">
                 <button className="py-2 bg-black text-white w-full rounded-md border font-medium">Rocking chair</button>
-                <button className="py-2 w-full border-t border-b text-gray-400 font-medium">Side chair</button>
-                <button className="py-2  w-full text-gray-400 font-medium">Lounge chair</button>
+                <button className="py-2 w-full border-t border-b text-gray-400 font-medium hover:bg-black duration-300 hover:text-white rounded-md">Side chair</button>
+                <button className="py-2  w-full text-gray-400 font-medium hover:bg-black duration-300 hover:text-white rounded-md">Lounge chair</button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-5 md:gap-10 ">
                 {
