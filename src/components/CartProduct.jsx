@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { IoClose } from "react-icons/io5";
 import { CartContext } from "../providers/ContextProvider";
-
 /* eslint-disable react/prop-types */
 const CartProduct = ({ product }) => {
     const { cart, dispatch } = useContext(CartContext)
     const Increase = (id) => {
-        const Index = cart.findIndex((p) => p.id === id);
-        if (cart[Index].quantity < 10) {
+        const index = cart.findIndex((p) => p.id === id);
+        // One time user can select 100 product
+        if (cart[index].quantity < 100) {
             dispatch({ type: "Increase", id });
         }
     };
     const Decrease = (id) => {
-        const Index = cart.findIndex((p) => p.id === id);
-        if (cart[Index].quantity > 1) {
+        const index = cart.findIndex((p) => p.id === id);
+        if (cart[index].quantity > 1) {
             dispatch({ type: "Decrease", id });
         }
     };

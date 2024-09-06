@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../providers/ContextProvider";
 import CartProduct from "../components/CartProduct";
+import { totalPrice } from "../providers/CartReducer";
 
 const Cart = () => {
     const { cart } = useContext(CartContext)
@@ -19,7 +20,7 @@ const Cart = () => {
                 <div className="bg-gray-100 px-10 py-5 my-5 w-full lg:w-[400px] rounded-lg space-y-3 border-2 border-gray-200">
                     <div className="flex justify-between text-lg font-medium">
                         <h1>Subtotal</h1>
-                        <p>$1200</p>
+                        <p>${totalPrice(cart)}</p>
                     </div>
                     <div className="flex justify-between text-lg font-medium">
                         <h1>Shipping</h1>
@@ -31,7 +32,7 @@ const Cart = () => {
                     </div>
                     <div className="flex justify-between text-xl font-bold border-t border-b border-gray-200 py-3">
                         <h1>Total</h1>
-                        <p>$1200</p>
+                        <p>${totalPrice(cart)}</p>
                     </div>
                 </div>
                 <button className="text-lg font-medium text-white py-2 bg-black rounded-md w-full">Go to Checkout</button>

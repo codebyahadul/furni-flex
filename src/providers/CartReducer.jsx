@@ -1,25 +1,43 @@
-
+// calculate the total price of the cart
+export const totalPrice = (cart) => {
+    return cart.reduce((total, product) => {
+        return total + product.quantity * product.offerPrice;
+    }, 0);
+};
 const CartReducer = (state, action) => {
-    console.log(state);
-    
     switch (action.type) {
         case "Add":
-            return [...state, action.product]
-            case "Remove":
-            return state.filter( p => p.id !== action.id)
+            // adds a new product to the cart
+            return [...state, action.product];
 
-        case "Increase":
-            const IndexI = state.findIndex( p => p.id === action.id)
-            state[IndexI].quantity += 1
-            return [...state]
+        case "Remove":
+            // removes a product from the cart based on id
+            return state.filter(product => product.id !== action.id);
 
-        case "Decrease":
-            const IndexD = state.findIndex( p => p.id === action.id)
-            state[IndexD].quantity -= 1 
-            return [...state]
+        case "Increase": {
+            // finds the product by id and increases its quantity by 1
+            const updatedState = state.map(product => {
+                if (product.id === action.id) {
+                    return { ...product, quantity: product.quantity + 1 };
+                }
+                return product;
+            });
+            return updatedState;
+        }
+
+        case "Decrease": {
+            // finds the product by id and decreases its quantity by 1
+            const updatedState = state.map(product => {
+                if (product.id === action.id) {
+                    return { ...product, quantity: product.quantity - 1 };
+                }
+                return product;
+            });
+            return updatedState;
+        }
         default:
-            state;
+            return state;
     }
-}
+};
 
-export default CartReducer
+export default CartReducer;
