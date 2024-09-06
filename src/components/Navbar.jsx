@@ -3,14 +3,14 @@ import Logo from '../assets/logo.png';
 import { BsCart } from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
-import { AuthContext } from '../providers/AuthProvider';
 import { CartContext } from "../providers/ContextProvider";
 import toast from 'react-hot-toast';
+import useAuth from '../hooks/useAuth';
 const Navbar = () => {
     const [dropdown, setDropdown] = useState()
     const [toggle, setToggle] = useState(false)
     const navigate = useNavigate()
-    const { user, loading, logOut } = useContext(AuthContext)
+    const { user, loading, logOut } = useAuth()
     const {cart} = useContext(CartContext)
     const navLinks = <>
         <li>

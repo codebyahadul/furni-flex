@@ -14,7 +14,7 @@ const Home = () => {
                     <p className="text-xs md:text-sm lg:text-lg text-gray-600">
                         Transform your living space with modern, comfortable, and stylish furniture designs made just for you.
                     </p>
-                    <Link to='/products' className="inline-block text-xs md:text-sm md:text-lg px-8 py-2 lg:py-4 bg-blue-500 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">
+                    <Link to='/products' className="inline-block text-xs md:text-sm lg:text-lg px-8 py-2 lg:py-4 bg-blue-500 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-transform transform hover:scale-105">
                         Shop Now
                     </Link>
                 </div>
