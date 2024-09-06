@@ -1,6 +1,14 @@
+import { useContext } from "react";
 import { IoBag } from "react-icons/io5";
+import { CartContext } from "../providers/ContextProvider";
+import toast from "react-hot-toast";
 /* eslint-disable react/prop-types */
 const Product = ({ product }) => {
+    const { dispatch } = useContext(CartContext)
+    const handleAddToCart = () => {
+        dispatch({ type: "Add", product: product })
+        toast.success("Successfully added to cart")
+    }
     return (
         <div className="p-5 border-2 rounded-md shadow-md max-w-lg">
             <div>
@@ -14,8 +22,8 @@ const Product = ({ product }) => {
                     <h1 className="text-xl font-semibold text-red-400">${product?.offer} OFF</h1>
                 </div>
                 <p className="text-xs md:text-sm font-medium my-4">{product?.description.slice(0, 60)}</p>
-                <button className="w-full py-2 flex items-center justify-center gap-4 bg-black text-white my-3 rounded-lg">
-                    <IoBag size={20}/> Add to cart
+                <button onClick={handleAddToCart} className="w-full py-2 flex items-center justify-center gap-4 bg-black text-white my-3 rounded-lg">
+                    <IoBag size={20} /> Add to cart
                 </button>
             </div>
         </div>

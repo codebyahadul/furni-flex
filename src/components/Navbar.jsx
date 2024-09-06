@@ -4,12 +4,14 @@ import { BsCart } from 'react-icons/bs';
 import { useContext, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import { AuthContext } from '../providers/AuthProvider';
+import { CartContext } from "../providers/ContextProvider";
 import toast from 'react-hot-toast';
 const Navbar = () => {
     const [dropdown, setDropdown] = useState()
     const [toggle, setToggle] = useState(false)
     const navigate = useNavigate()
     const { user, loading, logOut } = useContext(AuthContext)
+    const {cart} = useContext(CartContext)
     const navLinks = <>
         <li>
             <NavLink to="/"
@@ -69,6 +71,7 @@ const Navbar = () => {
                 toast.success('Logout successfully')
             })
     }
+    
     if (loading) {
         return <div>Loading</div>
     }
@@ -94,10 +97,10 @@ const Navbar = () => {
                 {/* navbar end */}
                 {
                     user ? <div className='flex items-center gap-3 md:gap-8 relative'>
-                        <div className='relative'>
+                        <Link to='/cart' className='relative'>
                             <BsCart size={20} />
-                            <span className='absolute -top-3 -right-4 w-full text-sm font-medium z-50'>57</span>
-                        </div>
+                            <span className='absolute -top-3 -right-4 w-full text-sm font-medium z-50'>{cart.length}</span>
+                        </Link>
                         <div onClick={() => setToggle(!toggle)} className='cursor-pointer'>
                             <img className='rounded-full border size-9' src={user?.photoURL} alt="" />
                         </div>
