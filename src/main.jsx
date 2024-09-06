@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
@@ -8,12 +7,12 @@ import { Toaster } from 'react-hot-toast'
 import ContextProvider from './providers/ContextProvider'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  <>
     <AuthProvider>
       <ContextProvider>
         <RouterProvider router={router} />
         <Toaster />
       </ContextProvider>
     </AuthProvider>
-  </StrictMode>,
+  </>,
 )
