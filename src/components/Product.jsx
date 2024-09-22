@@ -2,10 +2,15 @@ import { useContext } from "react";
 import { IoBag } from "react-icons/io5";
 import { CartContext } from "../providers/ContextProvider";
 import toast from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
 /* eslint-disable react/prop-types */
 const Product = ({ product }) => {
+    const {user} = useAuth()
     const { dispatch } = useContext(CartContext)
     const handleAddToCart = () => {
+        if(!user){
+            return toast.error("Please sign in first !!")
+        }
         dispatch({ type: "Add", product: product })
         toast.success("Successfully added to cart")
     }

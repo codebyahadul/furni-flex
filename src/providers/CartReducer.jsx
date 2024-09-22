@@ -6,9 +6,20 @@ export const totalPrice = (cart) => {
 };
 const CartReducer = (state, action) => {
     switch (action.type) {
-        case "Add":
-            // adds a new product to the cart
-            return [...state, action.product];
+        case "Add":{
+            const updatedCart = state.map(product => {
+                if (product.id === action.product.id) {  // Check if the product already exists in the cart
+                    return { ...product, quantity: product.quantity + 1 };  // Increase the quantity
+                }
+                return product;  // Return the product unchanged if it's not the one being updated
+            });
+            const isExistsProduct = state.some(product => product.id === action.product.id);
+            if (!isExistsProduct) {
+                return [...state, { ...action.product, quantity: 1 }];  // Add new product with quantity 1 if it doesn't exist
+            }
+
+            return updatedCart;}  // Return the updated cart with modified quantity
+
 
         case "Remove":
             // removes a product from the cart based on id
